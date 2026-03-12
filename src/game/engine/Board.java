@@ -10,7 +10,7 @@ public class Board {
     private final Cell[][] boardCells;
     private static ArrayList<Monster> stationedMonsters;
     private static ArrayList<Card> originalCards;
-    private static ArrayList<Card> cards;
+    public static ArrayList<Card> cards;
     public Board(ArrayList<Card> readCards) {
         boardCells = new Cell[BOARD_ROWS][BOARD_COLS];
         stationedMonsters = new ArrayList<>();
