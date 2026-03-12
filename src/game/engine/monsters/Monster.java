@@ -81,8 +81,6 @@ public abstract class Monster implements Comparable<Monster> {
     public int compareTo(Monster other) {
         return this.position - other.position;
     }
- // Abstract method for Monster-specific powerup
-    // =====================
-    //public abstract void usePower();
+ 
 
 }
