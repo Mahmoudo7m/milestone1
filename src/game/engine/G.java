@@ -8,4 +8,5 @@ int y;
 int h;
 int m;
 int n;
+int k;
 }
