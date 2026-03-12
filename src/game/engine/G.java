@@ -7,4 +7,5 @@ int x=1;
 int y;
 int h;
 int m;
+int n;
 }
