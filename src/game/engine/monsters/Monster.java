@@ -3,7 +3,7 @@ import game.engine.Role;
 public abstract class Monster implements Comparable<Monster> {
 	private final String name;
     private final String description;
-    private final Role originalRole;
+    private  Role originalRole;
     private Role role;
     private int energy;
     private int position;
@@ -60,13 +60,15 @@ public abstract class Monster implements Comparable<Monster> {
     }
 
     public void setEnergy(int energy) {
-        this.energy = energy;
+        this.energy = Math.max(0, energy);
     }
 
     public void setPosition(int position) {
-        this.position = position;
+        if (position < 0)
+            this.position = 0;
+        else
+            this.position = position % 100;
     }
-
     public void setFrozen(boolean frozen) {
         this.frozen = frozen;
     }
@@ -81,6 +83,8 @@ public abstract class Monster implements Comparable<Monster> {
     public int compareTo(Monster other) {
         return this.position - other.position;
     }
- 
+    public void setOriginalRole(Role originalRole) {
+        this.originalRole = originalRole;
+    }
 
 }
