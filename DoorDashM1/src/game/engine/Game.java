@@ -14,7 +14,19 @@ public class Game {
 	private Monster player;
 	private Monster opponent;
 	private Monster current;
-	
+	public Game(Role playerRole) throws IOException {
+	    this.board = new Board(DataLoader.readCards());
+	    this.allMonsters = DataLoader.readMonsters();
+	    this.player = selectRandomMonsterByRole(playerRole);
+	    this.opponent = selectRandomMonsterByRole(playerRole == Role.SCARER ? Role.LAUGHER : Role.SCARER);
+	    this.current = player;
+	    
+	    ArrayList<Monster> stationedMonsters = new ArrayList<>(allMonsters);
+	    stationedMonsters.remove(player);
+	    stationedMonsters.remove(opponent);
+	    board.setStationedMonsters(stationedMonsters);
+	    board.initializeBoard(DataLoader.readCells());
+	}
 
 	
 	public Board getBoard() {
@@ -87,17 +99,5 @@ public class Game {
 	    }
 	    return null;
 	}
-	public Game(Role playerRole) throws IOException {
-	    this.board = new Board(DataLoader.readCards());
-	    this.allMonsters = DataLoader.readMonsters();
-	    this.player = selectRandomMonsterByRole(playerRole);
-	    this.opponent = selectRandomMonsterByRole(playerRole == Role.SCARER ? Role.LAUGHER : Role.SCARER);
-	    this.current = player;
-	    
-	    ArrayList<Monster> stationedMonsters = new ArrayList<>(allMonsters);
-	    stationedMonsters.remove(player);
-	    stationedMonsters.remove(opponent);
-	    board.setStationedMonsters(stationedMonsters);
-	    board.initializeBoard(DataLoader.readCells());
-	}
+
 }
