@@ -1,5 +1,5 @@
 package game.engine.cards;
-
+import game.engine.monsters.Monster;
 import game.engine.interfaces.CanisterModifier;
 
 public class EnergyStealCard extends Card implements CanisterModifier {
@@ -13,5 +13,15 @@ public class EnergyStealCard extends Card implements CanisterModifier {
 	public int getEnergy() {
 		return energy;
 	}
-	
+	public void performAction(Monster player, Monster opponent) {
+	    int stolen = Math.min(this.getEnergy(), opponent.getEnergy());
+	    opponent.alterEnergy(-stolen);
+	    player.alterEnergy(stolen);
+	    modifyCanisterEnergy(player, stolen);
+	    modifyCanisterEnergy(opponent, -stolen);
+	}
+
+	public void modifyCanisterEnergy(Monster monster, int canisterValue) {
+	    monster.alterEnergy(canisterValue);
+	}
 }
