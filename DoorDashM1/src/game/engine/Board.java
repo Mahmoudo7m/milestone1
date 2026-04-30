@@ -101,7 +101,7 @@ public class Board {
             if (i < stationedMonsters.size()) {
                 Monster m = stationedMonsters.get(i);
                 m.setPosition(idx);
-                setCell(idx, new MonsterCell("Monster Cell", m));
+                setCell(idx, new MonsterCell(m.getName(), m));
             }
         }
     }
@@ -142,9 +142,9 @@ public class Board {
 
         if (currentMonster.isConfused()) {
             currentMonster.decrementConfusion();
-        }
-        if (opponentMonster.isConfused()) {
-            opponentMonster.decrementConfusion();
+            if (opponentMonster.isConfused()) {
+                opponentMonster.decrementConfusion();
+            }
         }
 
         updateMonsterPositions(currentMonster, opponentMonster);
