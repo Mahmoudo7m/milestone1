@@ -24,5 +24,12 @@ public class Dasher extends Monster {
 	public void setEnergy(int energy) {
 	    super.setEnergy(energy);
 	}
-
+	public void move(int distance) {
+	    if (momentumTurns > 0) {
+	        super.move(distance * 3);
+	        momentumTurns--;
+	    } else {
+	        super.move(distance * 2);
+	    }
+	}
 }
